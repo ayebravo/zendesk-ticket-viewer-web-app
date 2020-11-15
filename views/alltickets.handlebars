@@ -1,0 +1,9 @@
+<h1>All tickets</h1>
+
+<ul class="list-group">
+    {{#each data.tickets}}
+    <li class="list-group-item">{{this.id}} {{this.subject}}</li>
+    {{/each}}
+</ul>
+
+<a href="/" class="btn btn-success mt-4">Main Menu</a>
