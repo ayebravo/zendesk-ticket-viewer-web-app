@@ -1,5 +1,5 @@
 {
-  "name": "ticket-viewer_1",
+  "name": "zendesk-ticket-viewer-web-app",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -15,7 +15,11 @@
     "start": "node app",
     "dev": "nodemon app"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "zendesk",
+    "ticket viewer",
+    "support"
+  ],
+  "author": "Ayelen Bravo <abravo3@madisoncollege.edu>",
   "license": "ISC"
 }

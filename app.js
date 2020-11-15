@@ -1,16 +1,30 @@
+const url = require("url");
+
+let paginate = require("handlebars-paginate");
+
 // Import express library for web server
 const express = require("express");
 let exphbs = require("express-handlebars");
 
 // Import file with API
-
 const zendeskApi = require("./zendesk_api/api");
 
 // Create instance of express
 const app = express();
 
 // Handlebars template engine
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main",
+    helpers: {
+      paginate: paginate,
+      hasNoValue: (value) => {
+        return !value;
+      },
+    },
+  })
+);
 app.set("view engine", "handlebars");
 
 // Body parser
@@ -22,12 +36,33 @@ app.get("/", (request, response) => {
   response.render("menu");
 });
 
+// Function to help next and previous pages
+function getPageLink(pageUrl) {
+  let pageLink = "";
+  if (pageUrl) {
+    let parsedUrl = url.parse(pageUrl, true);
+    if (parsedUrl && parsedUrl.query) {
+      pageLink = `?page=${parsedUrl.query.page}`;
+    }
+  }
+  return pageLink;
+}
+
 app.get("/alltickets", async (request, response) => {
-  let data = await zendeskApi.makerequest();
-  console.log(data);
+  let targetPage = null;
+  if (request && request.query) {
+    targetPage = request.query.page;
+  }
+
+  let data = await zendeskApi.makerequest(targetPage);
+
+  let nextSearch = getPageLink(data.next_page);
+  let previousSearch = getPageLink(data.previous_page);
 
   response.render("alltickets", {
     data,
+    next: nextSearch,
+    previous: previousSearch,
   });
 });
 
@@ -36,7 +71,6 @@ app.get("/singleticket", (request, response) => {
 });
 
 // Route to show single ticket
-
 app.use("/internal_api/searchticket", require("./internal_api/searchticket"));
 
 // Port to listen on to server webpage

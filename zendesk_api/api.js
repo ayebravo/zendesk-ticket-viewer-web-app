@@ -1,10 +1,11 @@
 const axios = require("axios");
 
 // Make API GET request
-
-async function makeApiRequest(url) {
-  if (!url) {
-    url = "https://ayelenbravo.zendesk.com/api/v2/tickets.json?per_page=2";
+async function makeApiRequest(targetPage) {
+  const TICKETS_PER_PAGE = 25;
+  let url = `https://ayelenbravo.zendesk.com/api/v2/tickets.json?per_page=${TICKETS_PER_PAGE}`;
+  if (targetPage) {
+    url = `https://ayelenbravo.zendesk.com/api/v2/tickets.json?page=${targetPage}&per_page=${TICKETS_PER_PAGE}`;
   }
 
   const response = await axios.get(url, {
@@ -15,12 +16,10 @@ async function makeApiRequest(url) {
     },
   });
 
-  console.log(response.data);
   return response.data;
 }
 
 // Make API GET request for single ticket
-
 async function getTicket(id) {
   let url = `https://ayelenbravo.zendesk.com/api/v2/tickets/${id}.json`;
 
@@ -32,12 +31,9 @@ async function getTicket(id) {
     },
   });
 
-  console.log(response.data);
   return response.data;
 }
 
 // Module to export functions
-
 module.exports.makerequest = makeApiRequest;
-
 module.exports.findticket = getTicket;

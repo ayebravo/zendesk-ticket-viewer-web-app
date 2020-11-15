@@ -7,8 +7,9 @@ router.post("/", async (request, response) => {
   let id = request.body.ticketId;
   let data = await zendeskApi.findticket(id);
 
-  //response.json(data);
-  response.redirect("/singleticket");
+  response.render("../views/singleticket", {
+    data,
+  });
 });
 
 module.exports = router;

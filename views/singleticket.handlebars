@@ -1,5 +1,6 @@
 <h1>Single ticket</h1>
 
+{{!-- Input form to search single ticket by id number --}}
 <form action="/internal_api/searchticket" method="POST" class="mb-4 w-25">
     <div class="form-group">
         <label for="ticketId">Ticket id:</label>
@@ -7,5 +8,13 @@
     </div>
     <input type="submit" value="Search ticket" class="btn btn-primary btn-block">
 </form>
+
+{{!-- Display ticket --}}
+{{#if data}}
+<ul class="list-group">
+    <li class="list-group-item">{{data.ticket.id}} - {{data.ticket.subject}}</li>
+</ul>
+{{/if}}
+
 
 <a href="/" class="btn btn-success mt-4">Main Menu</a>

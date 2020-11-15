@@ -1,9 +1,21 @@
 <h1>All tickets</h1>
 
+{{!-- Display tickets list --}}
 <ul class="list-group">
     {{#each data.tickets}}
     <li class="list-group-item">{{this.id}} {{this.subject}}</li>
     {{/each}}
 </ul>
+
+{{!-- Previous and next buttons --}}
+<span><a class="btn btn-secondary mt-4 {{#if (hasNoValue data.previous_page)}} disabled {{/if}}"
+        href="/alltickets{{previous}}">previos
+        page</a></span>
+
+<span><a class="btn btn-secondary mt-4 {{#if (hasNoValue data.next_page)}} disabled {{/if}}"
+        href="/alltickets{{next}}">next
+        page</a></span><br>
+
+
 
 <a href="/" class="btn btn-success mt-4">Main Menu</a>
