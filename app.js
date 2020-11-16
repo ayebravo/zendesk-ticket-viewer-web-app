@@ -1,3 +1,4 @@
+require("dotenv").config();
 const url = require("url");
 const formatter = require("./services/formatter");
 
@@ -82,6 +83,6 @@ app.get("/singleticket", (request, response) => {
 app.use("/internal_api/searchticket", require("./internal_api/searchticket"));
 
 // Port to listen on to server webpage
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Port: ${PORT}`));

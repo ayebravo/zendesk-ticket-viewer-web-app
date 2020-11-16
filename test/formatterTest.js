@@ -1,3 +1,4 @@
+// Mocha test -- run with "npm run test"
 const asert = require("chai").assert;
 const formatter = require("../services/formatter");
 
