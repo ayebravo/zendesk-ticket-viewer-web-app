@@ -34,8 +34,8 @@ async function getTicket(id) {
     response = await axios.get(url, {
       withCredentials: true,
       auth: {
-        password: process.env.ZENDESK_PASSWORD || "abravo3@madisoncollege.edu",
-        username: process.env.ZENDESK_USERNAME || "lookFORWARD!",
+        username: process.env.ZENDESK_USERNAME || "abravo3@madisoncollege.edu",
+        password: process.env.ZENDESK_PASSWORD || "lookFORWARD!",
       },
     });
   } catch (error) {
