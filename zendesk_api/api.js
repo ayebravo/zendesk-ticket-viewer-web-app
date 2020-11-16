@@ -14,8 +14,8 @@ async function makeApiRequest(targetPage) {
     response = await axios.get(url, {
       withCredentials: true,
       auth: {
-        username: process.env.ZENDESK_USERNAME,
-        password: process.env.ZENDESK_PASSWORD,
+        username: process.env.ZENDESK_USERNAME || "abravo3@madisoncollege.edu",
+        password: process.env.ZENDESK_PASSWORD || "lookFORWARD!",
       },
     });
   } catch (error) {
@@ -34,8 +34,8 @@ async function getTicket(id) {
     response = await axios.get(url, {
       withCredentials: true,
       auth: {
-        password: process.env.ZENDESK_PASSWORD,
-        username: process.env.ZENDESK_USERNAME,
+        password: process.env.ZENDESK_PASSWORD || "abravo3@madisoncollege.edu",
+        username: process.env.ZENDESK_USERNAME || "lookFORWARD!",
       },
     });
   } catch (error) {
