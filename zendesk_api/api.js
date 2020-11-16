@@ -8,13 +8,19 @@ async function makeApiRequest(targetPage) {
     url = `https://ayelenbravo.zendesk.com/api/v2/tickets.json?page=${targetPage}&per_page=${TICKETS_PER_PAGE}`;
   }
 
-  const response = await axios.get(url, {
-    withCredentials: true,
-    auth: {
-      username: "abravo3@madisoncollege.edu",
-      password: "lookFORWARD!",
-    },
-  });
+  let response = null;
+
+  try {
+    response = await axios.get(url, {
+      withCredentials: true,
+      auth: {
+        username: "abravo3@madisoncollege.edu",
+        password: "lookFORWARD!",
+      },
+    });
+  } catch (error) {
+    return null;
+  }
 
   return response.data;
 }
@@ -22,14 +28,19 @@ async function makeApiRequest(targetPage) {
 // Make API GET request for single ticket
 async function getTicket(id) {
   let url = `https://ayelenbravo.zendesk.com/api/v2/tickets/${id}.json`;
+  let response = null;
 
-  const response = await axios.get(url, {
-    withCredentials: true,
-    auth: {
-      username: "abravo3@madisoncollege.edu",
-      password: "lookFORWARD!",
-    },
-  });
+  try {
+    response = await axios.get(url, {
+      withCredentials: true,
+      auth: {
+        username: "abravo3@madisoncollege.edu",
+        password: "lookFORWARD!",
+      },
+    });
+  } catch (error) {
+    return null;
+  }
 
   return response.data;
 }

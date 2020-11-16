@@ -4,17 +4,14 @@
 <form action="/internal_api/searchticket" method="POST" class="mb-4 w-25">
     <div class="form-group">
         <label for="ticketId">Ticket id:</label>
-        <input type="text" name="ticketId" class="form-control" id="ticketId">
+        <input type="text" name="ticketId" class="form-control" id="ticketId" autocomplete="off">
     </div>
     <input type="submit" value="Search ticket" class="btn btn-primary btn-block">
 </form>
 
-{{!-- Display ticket --}}
-{{!-- {{#if data}}
-<ul class="list-group">
-    <li class="list-group-item">{{data.ticket.id}} - {{data.ticket.subject}}</li>
-</ul>
-{{/if}} --}}
+{{#if error_message}}
+<p>{{error_message}}</p>
+{{else}}
 
 {{#if data}}
 <table class="table table-hover">
@@ -35,12 +32,13 @@
             <td>{{data.ticket.subject}}</td>
             <td>{{data.ticket.priority}}</td>
             <td>{{data.ticket.status}}</td>
-            <td>{{data.ticket.created_at}}</td>
+            <td>{{formatDate data.ticket.created_at}}</td>
         </tr>
 
     </tbody>
 </table>
 {{/if}}
 
+{{/if}}
 
 <a href="/" class="btn btn-success mt-4">Main Menu</a>

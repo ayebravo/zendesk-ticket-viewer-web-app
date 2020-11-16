@@ -1,5 +1,5 @@
 const url = require("url");
-const moment = require("moment");
+const formatter = require("./services/formatter");
 
 // Import express library for web server
 const express = require("express");
@@ -20,10 +20,7 @@ app.engine(
       hasNoValue: (value) => {
         return !value;
       },
-      formatDate: (value) => {
-        let formattedDate = moment(value).format("lll");
-        return formattedDate;
-      },
+      formatDate: formatter.formatDate,
     },
   })
 );
@@ -58,6 +55,13 @@ app.get("/alltickets", async (request, response) => {
   }
 
   let data = await zendeskApi.makerequest(targetPage);
+
+  if (!data || !data.tickets || data.tickets.length === 0) {
+    response.render("alltickets", {
+      error_message: "Something went wrong. Please try again later.",
+    });
+    return;
+  }
 
   let nextSearch = getPageLink(data.next_page);
   let previousSearch = getPageLink(data.previous_page);
