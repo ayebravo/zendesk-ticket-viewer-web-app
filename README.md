@@ -18,6 +18,11 @@ $ npm run dev
 
 ## Testing
 
+In order to test properly, create a .env file with the following environment variables:
+
+- ZENDESK_USERNAME
+- ZENDESK_PASSWORD
+
 To test the business logic functions use
 
 ```bash
