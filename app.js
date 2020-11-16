@@ -1,6 +1,5 @@
 const url = require("url");
-
-let paginate = require("handlebars-paginate");
+const moment = require("moment");
 
 // Import express library for web server
 const express = require("express");
@@ -18,9 +17,12 @@ app.engine(
   exphbs({
     defaultLayout: "main",
     helpers: {
-      paginate: paginate,
       hasNoValue: (value) => {
         return !value;
+      },
+      formatDate: (value) => {
+        let formattedDate = moment(value).format("lll");
+        return formattedDate;
       },
     },
   })
@@ -48,6 +50,7 @@ function getPageLink(pageUrl) {
   return pageLink;
 }
 
+// Handle view of all tickets page
 app.get("/alltickets", async (request, response) => {
   let targetPage = null;
   if (request && request.query) {
@@ -66,6 +69,7 @@ app.get("/alltickets", async (request, response) => {
   });
 });
 
+// Handle view of single ticket page
 app.get("/singleticket", (request, response) => {
   response.render("singleticket");
 });

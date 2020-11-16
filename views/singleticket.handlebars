@@ -10,10 +10,36 @@
 </form>
 
 {{!-- Display ticket --}}
-{{#if data}}
+{{!-- {{#if data}}
 <ul class="list-group">
     <li class="list-group-item">{{data.ticket.id}} - {{data.ticket.subject}}</li>
 </ul>
+{{/if}} --}}
+
+{{#if data}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Type</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Status</th>
+            <th scope="col">Creation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{data.ticket.id}}</th>
+            <td>{{data.ticket.type}}</td>
+            <td>{{data.ticket.subject}}</td>
+            <td>{{data.ticket.priority}}</td>
+            <td>{{data.ticket.status}}</td>
+            <td>{{data.ticket.created_at}}</td>
+        </tr>
+
+    </tbody>
+</table>
 {{/if}}
 
 
