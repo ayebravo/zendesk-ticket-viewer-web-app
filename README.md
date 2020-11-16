@@ -1,4 +1,4 @@
-Zendesk Ticket Viewer Web App
+# Zendesk Ticket Viewer Web App
 
 ## Installing
 
