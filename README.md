@@ -10,6 +10,18 @@ $ npm install
 
 ## How to run the App
 
+### 1. Authorization
+
+Copy the sample environment variable file
+
+```bash
+$ cp .env_sample .env
+```
+
+Edit the `.env` file and add your Zendesk username and password.
+
+### 2. Run command
+
 To launch the App in a browser use
 
 ```bash
@@ -17,11 +29,6 @@ $ npm run dev
 ```
 
 ## Testing
-
-In order to test properly, create a .env file with the following environment variables:
-
-- ZENDESK_USERNAME
-- ZENDESK_PASSWORD
 
 To test the business logic functions use
 
